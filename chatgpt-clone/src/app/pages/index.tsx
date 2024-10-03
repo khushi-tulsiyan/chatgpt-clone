@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import ChatInterface from '../components/ChatInterface';
 
-// Define a type for the conversation
+
 interface Conversation {
   id: string;
   user_id: string;
@@ -17,10 +17,10 @@ export default function Home() {
   }, []);
 
   const createOrFetchConversation = async () => {
-    // In a real app, you'd get the user_id from authentication
+    
     const user_id = 'example-user-id';
 
-    // Check if there's an existing conversation
+    
     const { data: existingConversations, error: fetchError } = await supabase
       .from('conversations')
       .select('id')
@@ -35,7 +35,7 @@ export default function Home() {
     if (existingConversations && existingConversations.length > 0) {
       setConversationId(existingConversations[0].id);
     } else {
-      // Create a new conversation
+      
       const { data: newConversation, error: insertError } = await supabase
         .from('conversations')
         .insert({ user_id })
